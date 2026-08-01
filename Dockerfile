@@ -4,7 +4,7 @@ FROM node:20-alpine AS builder
 WORKDIR /app
 
 COPY package*.json ./
-RUN npm ci
+RUN npm ci --platform=linuxmusl --arch=x64
 
 COPY . .
 RUN npm run build
@@ -18,7 +18,7 @@ ENV NODE_ENV=production
 ENV PORT=3000
 
 COPY package*.json ./
-RUN npm ci --only=production
+RUN npm ci --only=production --platform=linuxmusl --arch=x64
 
 COPY --from=builder /app/dist ./dist
 COPY --from=builder /app/server ./server
