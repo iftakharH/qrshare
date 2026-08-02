@@ -1,0 +1,17 @@
+# Exclude local node_modules so Docker always does a fresh npm ci
+# for the correct Linux platform (prevents Windows binary cross-contamination)
+node_modules
+**/node_modules
+
+# Exclude local build artifacts
+dist
+client/dist
+
+# Exclude dev/git files not needed in the image
+.git
+.gitignore
+*.md
+.env
+.env.*
+npm-debug.log*
+yarn-debug.log*
